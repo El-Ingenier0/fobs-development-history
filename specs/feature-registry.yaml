@@ -1,0 +1,6 @@
+# Feature registry for FOBS
+# Format notes:
+# - id uses prefix "fobs-" (e.g., fobs-0001)
+# - history is tracked in specs/features/<id>.md
+
+features: []

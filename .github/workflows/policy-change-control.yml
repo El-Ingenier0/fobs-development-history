@@ -1,0 +1,50 @@
+name: Policy Change Control
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, labeled, unlabeled]
+
+jobs:
+  require-policy-summary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check policy change control requirements
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const labels = (pr.labels || []).map((label) => label.name);
+            if (labels.includes('governance-exception')) {
+              core.info('governance-exception label present; skipping policy change control check.');
+              return;
+            }
+
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+
+            const touchesPolicy = files.some((file) => file.filename.startsWith('policy/'));
+            if (!touchesPolicy) {
+              core.info('No policy files changed; skipping policy change control check.');
+              return;
+            }
+
+            const body = pr.body || '';
+
+            const sectionHasContent = (heading) => {
+              const regex = new RegExp(`##\\s+${heading}([\\s\\S]*?)(##|$)`, 'i');
+              const match = body.match(regex);
+              if (!match) return false;
+              const content = match[1].replace(/[#\s\-:]/g, '');
+              return content.length > 0;
+            };
+
+            const hasDiff = sectionHasContent('Policy Diff Summary');
+            const hasRationale = sectionHasContent('Rationale');
+
+            if (!hasDiff || !hasRationale) {
+              core.setFailed('Policy changes require PR body sections: "Policy Diff Summary" and "Rationale" with content.');
+            }

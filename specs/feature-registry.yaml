@@ -9,3 +9,15 @@ features:
     name: holdings-news-intelligence
     description: Daily gathering, collation, and processing of news about holdings to support status awareness and disaster alerts.
     status: todo
+  - id: fobs-0002
+    name: sleeve-decision-support-vlcc-shipping-offshore
+    description: Decision support for the VLCC/Shipping/Offshore Drilling capital cycle sleeve; inputs/outputs to be defined.
+    status: todo
+  - id: fobs-0003
+    name: sleeve-decision-support-illiquidity-neglect
+    description: Decision support for the Illiquidity/Neglect sleeve; inputs/outputs to be defined.
+    status: todo
+  - id: fobs-0004
+    name: sleeve-decision-support-real-assets
+    description: Decision support for Real Assets sleeves; inputs/outputs to be defined.
+    status: todo

@@ -12,3 +12,6 @@ Interview logs (why/intent and evolution):
 
 ## Current Features
 - fobs-0001: holdings-news-intelligence
+- fobs-0002: sleeve-decision-support-vlcc-shipping-offshore
+- fobs-0003: sleeve-decision-support-illiquidity-neglect
+- fobs-0004: sleeve-decision-support-real-assets

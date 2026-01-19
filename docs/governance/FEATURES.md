@@ -11,4 +11,4 @@ Interview logs (why/intent and evolution):
 - Example: `feat/fobs-0001-intake-watch`
 
 ## Current Features
-- None yet. Add entries to the registry and corresponding interview log files.
+- fobs-0001: holdings-news-intelligence

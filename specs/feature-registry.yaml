@@ -2,5 +2,10 @@
 # Format notes:
 # - id uses prefix "fobs-" (e.g., fobs-0001)
 # - history is tracked in specs/features/<id>.md
+# - status values: todo | under-development | in-use | blocked | deprecated
 
-features: []
+features:
+  - id: fobs-0001
+    name: holdings-news-intelligence
+    description: Daily gathering, collation, and processing of news about holdings to support status awareness and disaster alerts.
+    status: todo
